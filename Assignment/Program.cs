@@ -18,7 +18,15 @@ namespace Assignment
 
             #endregion
 
-            
+            #region Q2 create a generic Range<T> class
+
+            //Range<int> range = new Range<int>(40, 10);
+            //Console.WriteLine(range.IsInRange(1));
+            //Console.WriteLine(range.Length());
+
+            #endregion
+
+
         }
     }
     #region Q1 Bubble Sort enhancement
@@ -67,6 +75,42 @@ namespace Assignment
 
     #endregion
 
-    
+    #region Q2 create a generic Range<T> class
+    public class Range<T> where T : IComparable<T>, ISubtractionOperators<T, T, T>
+    {
+        public T Maximum { get; set; }
+        public T Minimum { get; set; }
+
+        public Range(T Max, T Min)
+        {
+            Maximum = Max;
+            Minimum = Min;
+        }
+
+        public bool IsInRange(T obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            if (this.Maximum.CompareTo(obj) >= 0 && this.Minimum.CompareTo(obj) <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public T Length()
+        {
+            T Diff = this.Maximum - this.Minimum; // not avaliable substraction without implementing "ISubtractionOperators"
+            return Diff;
+        }
+
+    }
+    #endregion
 
 }
